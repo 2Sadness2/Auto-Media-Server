@@ -9,6 +9,7 @@ This project sets up a complete media automation system that allows you and your
 
 🛠️ Stack
 Service            Purpose                  Port
+qbittorrent        Downloads                8080
 Jellyfin           Media streaming server   8096
 Radarr             Movie automation         7878
 Sonarr             TV show automation       8989  
