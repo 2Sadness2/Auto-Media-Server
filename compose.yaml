@@ -1,0 +1,99 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:4.6.7
+    container_name: qbittorrent
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe
+      - WEBUI_PORT=8080
+    volumes:
+      - /etc/qbittorrent:/config
+      - /media:/media
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr
+    container_name: prowlarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe
+    volumes:
+      - /etc/prowlarr:/config
+    ports:
+      - 9696:9696
+
+  radarr:
+    image: lscr.io/linuxserver/radarr
+    container_name: radarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe
+    volumes:
+      - /etc/radarr:/config
+      - /media:/media
+    ports:
+      - 7878:7878
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe
+    volumes:
+      - /etc/sonarr:/config
+      - /media:/media
+    ports:
+      - 8989:8989
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr
+    container_name: bazarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe
+    volumes:
+      - /etc/bazarr:/config
+      - /media:/media
+    ports:
+      - 6767:6767
+
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    restart: unless-stopped
+    environment:
+      - TZ=Europe
+    volumes:
+      - /etc/jellyfin:/config
+      - /var/cache/jellyfin:/cache
+      - /media:/media
+    ports:
+      - 8096:8096
+
+  jellyseerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    init: true
+    container_name: jellyseerr
+    restart: unless-stopped
+    environment:
+      - LOG_LEVEL=info
+      - TZ=Europe
+    volumes:
+      - /etc/jellyseerr:/app/config
+    ports:
+      - 5055:5055
+      
