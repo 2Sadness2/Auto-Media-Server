@@ -7,6 +7,15 @@ A fully automated self-hosted media server stack running on Proxmox, built for s
 This project sets up a complete media automation system that allows you and your family to request, download, and stream movies and TV shows — all managed from a single interface.
 
 
+/media/
+├── films/          # Movies
+├── serier/         # TV Shows
+├── musik/          # Music
+├── downloads/      # Download staging
+│   ├── complete/   # Completed downloads
+│   └── incomplete/ # In progress downloads
+└── undertekster/   # Subtitles
+
 🛠️ Stack
 Service            Purpose                  Port
 qbittorrent        Downloads                8080
